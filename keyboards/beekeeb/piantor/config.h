@@ -1,6 +1,5 @@
 #pragma once
 
-
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 1000U
 
@@ -9,5 +8,7 @@
 #define SERIAL_USART_RX_PIN GP1
 
 /* QMK */
-#define TAPPING_TERM 200
-#define IGNORE_MOD_TAP_INTERRUPT /* for rolling on mod-tap keys */
+#define TAPPING_TERM 175
+#define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD
+#define QUICK_TAP_TERM_PER_KEY
