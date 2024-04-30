@@ -1,3 +1,5 @@
+#pragma once // prevent multiple inclusions in different places from causing naming collisions with itself
+
 enum layer_names {
     _COLEMAK,
     _MED,
