@@ -1,42 +1,52 @@
 #include QMK_KEYBOARD_H
 #include "shared.h"
 
+#include "features/achordion.h"
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  if (!process_achordion(keycode, record)) { return false; }
+
+  return true;
+}
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-      * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │Tab│ Q │ W │ F │ P │ B │       │ J │ L │ U │ Y │ ; │Esc│
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Ctl│ A │ R │ S │ T │ G │       │ M │ N │ E │ I │ O │ ' │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Sft│ Z │ X │ C │ D │ V │       │ K │ H │ , │ . │ / │ \ │
-      * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
-      *               ┌───┐                   ┌───┐
-      *               │GUI├───┐           ┌───┤Alt│
-      *               └───┤Bsp├───┐   ┌───┤Ent├───┘
-      *                   └───┤   │   │   ├───┘
-      *                       └───┘   └───┘
-    */
+
   [_COLEMAK] = LAYOUT_split_3x6_3( // Colemak layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_ESC,
+      KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,   KC_L,    KC_U,   KC_Y, KC_SCLN, KC_ESC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LBRC,   CK_A,    CK_R,    CK_S,    CK_T,    KC_G,                         KC_M,    CK_N,    CK_E,    CK_I,    CK_O, KC_QUOT,
+      KC_LBRC,   CK_A,    CK_R,    CK_S,    CK_T,    KC_G,                         KC_M,   CK_N,    CK_E,   CK_I,    CK_O, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_RBRC,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, KC_BSLS,
+      KC_RBRC,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,   KC_H, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           CKMED,   CKNAV,  KC_LSFT,     KC_RCTL,   CKNUM, CKPNT
                                       //`--------------------------'  `--------------------------'
+  ),
 
+  [_QWERTY] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,   KC_O,   KC_P,  KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LBRC,   CKQ_A,   CKQ_S,   CKQ_D,   CKQ_F,   KC_G,                         KC_H,   CKQ_J,   CKQ_K,  CKQ_L, KC_SCLN, KC_QUOT,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_RBRC,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          CKMED,   CKNAV,  KC_LSFT,     KC_RCTL,   CKNUM, CKPNT
+                                      //`--------------------------'  `--------------------------'
   ),
 
   [_MED] = LAYOUT_split_3x6_3(  // media layer
-    //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,                      XXXXXXX, KC_MNXT, KC_VOLU, KC_VOLD, KC_MPRV, XXXXXXX,
-    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+  //,-----------------------------------------------------.                  ,-----------------------------------------------------.
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
+    XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,                      XXXXXXX, KC_MNXT, KC_VOLU, KC_VOLD, KC_MPRV, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+------|
                                           _______, _______, _______,    KC_MPLY, KC_MSTP, KC_MUTE
                                       //`--------------------------'  `--------------------------'
   ),
@@ -75,5 +85,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_WH_D, KC_BTN2, KC_BTN1,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
-  ),
+  )
 };

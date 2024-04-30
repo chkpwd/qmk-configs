@@ -2,6 +2,7 @@
 
 enum layer_names {
     _COLEMAK,
+    _QWERTY,
     _MED,
     _NAV,
     _NUM,
@@ -10,14 +11,24 @@ enum layer_names {
 };
 
 /* Colemak home row mods */
-#define CK_A LGUI_T(KC_A)
-#define CK_R LALT_T(KC_R)
-#define CK_S LCTL_T(KC_S)
-#define CK_T LSFT_T(KC_T)
-#define CK_N RSFT_T(KC_N)
-#define CK_E RCTL_T(KC_E)
-#define CK_I LALT_T(KC_I)
-#define CK_O RGUI_T(KC_O)
+#define CK_A MT(MOD_LGUI, KC_A)
+#define CK_R MT(MOD_LALT, KC_R)
+#define CK_S MT(MOD_LCTL, KC_S)
+#define CK_T MT(MOD_LSFT, KC_T)
+#define CK_N MT(MOD_RSFT, KC_N)
+#define CK_E MT(MOD_RCTL, KC_E)
+#define CK_I MT(MOD_LALT, KC_I)
+#define CK_O MT(MOD_RGUI, KC_O)
+
+/* Qwerty home row mods */
+#define CKQ_A MT(MOD_LGUI, KC_A)
+#define CKQ_S MT(MOD_LALT, KC_S)
+#define CKQ_D MT(MOD_LCTL, KC_D)
+#define CKQ_F MT(MOD_LSFT, KC_F)
+#define CKQ_H MT(MOD_RSFT, KC_H)
+#define CKQ_J MT(MOD_RCTL, KC_J)
+#define CKQ_K MT(MOD_LALT, KC_K)
+#define CKQ_L MT(MOD_RGUI, KC_L)
 
 /* Custom Layers vars */
 #define CKMED LT(_NUM, KC_LGUI)
