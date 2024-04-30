@@ -1,6 +1,3 @@
-// Copyright 2022 beekeeb
-// SPDX-License-Identifier: GPL-2.0-or-later
-
 #pragma once
 
 
@@ -10,3 +7,7 @@
 #define SERIAL_USART_FULL_DUPLEX
 #define SERIAL_USART_TX_PIN GP0
 #define SERIAL_USART_RX_PIN GP1
+
+/* QMK */
+#define TAPPING_TERM 200
+#define IGNORE_MOD_TAP_INTERRUPT /* for rolling on mod-tap keys */
