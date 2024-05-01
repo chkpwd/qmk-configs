@@ -31,7 +31,7 @@ enum layer_names {
 #define CKQ_L MT(MOD_RGUI, KC_L)
 
 /* Custom Layers vars */
-#define CKMED LT(_NUM, KC_LGUI)
+#define CKMED LT(_MED, KC_LGUI)
 #define CKNAV LT(_NAV, KC_SPC)
 //#define CKSYM LT(_SYM, KC_R)
 #define CKNUM LT(_NUM, KC_BSPC)
