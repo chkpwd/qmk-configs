@@ -3,12 +3,14 @@
 enum layer_names {
     _COLEMAK,
     _QWERTY,
+    _NUMSYM,
     _MED,
     _NAV,
-    _NUM,
-    //_SYM,
     _PNT
 };
+
+/* Custom keycodes */
+#define CK MT(MOD_LGUI, C_A)
 
 /* Colemak home row mods */
 #define CK_A MT(MOD_LGUI, KC_A)
@@ -34,5 +36,5 @@ enum layer_names {
 #define CKMED LT(_MED, KC_LGUI)
 #define CKNAV LT(_NAV, KC_SPC)
 //#define CKSYM LT(_SYM, KC_R)
-#define CKNUM LT(_NUM, KC_BSPC)
+#define CKNUM LT(_NUMSYM, KC_BSPC)
 #define CKPNT LT(_PNT, KC_ENT)
