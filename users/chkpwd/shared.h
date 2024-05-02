@@ -9,32 +9,49 @@ enum layer_names {
     _PNT
 };
 
-/* Custom keycodes */
-#define CK MT(MOD_LGUI, C_A)
-
 /* Colemak home row mods */
-#define CK_A MT(MOD_LGUI, KC_A)
-#define CK_R MT(MOD_LALT, KC_R)
-#define CK_S MT(MOD_LCTL, KC_S)
-#define CK_T MT(MOD_LSFT, KC_T)
-#define CK_N MT(MOD_RSFT, KC_N)
-#define CK_E MT(MOD_RCTL, KC_E)
-#define CK_I MT(MOD_LALT, KC_I)
-#define CK_O MT(MOD_RGUI, KC_O)
+// Left Hand
+#define HRMC_A LGUI_T(KC_A)
+#define HRMC_R LALT_T(KC_R)
+#define HRMC_S LCTL_T(KC_S)
+#define HRMC_T LSFT_T(KC_T)
+
+// Right Hand
+#define HRMC_N RSFT_T(KC_N)
+#define HRMC_E RCTL_T(KC_E)
+#define HRMC_I LALT_T(KC_I)
+#define HRMC_O RGUI_T(KC_O)
 
 /* Qwerty home row mods */
-#define CKQ_A MT(MOD_LGUI, KC_A)
-#define CKQ_S MT(MOD_LALT, KC_S)
-#define CKQ_D MT(MOD_LCTL, KC_D)
-#define CKQ_F MT(MOD_LSFT, KC_F)
-#define CKQ_H MT(MOD_RSFT, KC_H)
-#define CKQ_J MT(MOD_RCTL, KC_J)
-#define CKQ_K MT(MOD_LALT, KC_K)
-#define CKQ_L MT(MOD_RGUI, KC_L)
+// Left Hand
+#define HRMQ_A LGUI_T(KC_A)
+#define HRMQ_S LALT_T(KC_S)
+#define HRMQ_D LCTL_T(KC_D)
+#define HRMQ_F LSFT_T(KC_F)
+
+// Right Hand
+#define HRMQ_H RSFT_T(KC_H)
+#define HRMQ_J RCTL_T(KC_J)
+#define HRMQ_K LALT_T(KC_K)
+#define HRMQ_L RGUI_T(KC_L)
 
 /* Custom Layers vars */
-#define CKMED LT(_MED, KC_LGUI)
-#define CKNAV LT(_NAV, KC_SPC)
-//#define CKSYM LT(_SYM, KC_R)
-#define CKNUM LT(_NUMSYM, KC_BSPC)
-#define CKPNT LT(_PNT, KC_ENT)
+#define LTMED LT(_MED, KC_LGUI)
+#define LTNAV LT(_NAV, KC_SPC)
+#define LTNUM LT(_NUMSYM, KC_BSPC)
+#define LTPNT LT(_PNT, KC_ENT)
+
+/* Custom keymaps */
+// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record);
+
+// Mouse key speed and acceleration.
+#undef MOUSEKEY_DELAY
+#define MOUSEKEY_DELAY          0
+#undef MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL       16
+#undef MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY    0
+#undef MOUSEKEY_MAX_SPEED
+#define MOUSEKEY_MAX_SPEED      6
+#undef MOUSEKEY_TIME_TO_MAX
+#define MOUSEKEY_TIME_TO_MAX    64

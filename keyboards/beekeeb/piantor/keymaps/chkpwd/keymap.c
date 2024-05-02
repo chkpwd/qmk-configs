@@ -4,38 +4,39 @@
 #include "features/achordion.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  if (!process_achordion(keycode, record)) { return false; }
-
-  return true;
+    if (!process_achordion(keycode, record)) {
+        return false;
+    }
+    return true;
 }
 
 void matrix_scan_user(void) {
-  achordion_task();
+    achordion_task();
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_split_3x6_3( // Colemak layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,   KC_L,    KC_U,   KC_Y, KC_SCLN, KC_ESC,
+      KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,   KC_L,    KC_U,   KC_Y, KC_SCLN,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LBRC,   CK_A,    CK_R,    CK_S,    CK_T,    KC_G,                         KC_M,   CK_N,    CK_E,   CK_I,    CK_O, KC_QUOT,
+      KC_LBRC, HRMC_A,  HRMC_R,  HRMC_S,  HRMC_T,    KC_G,                         KC_M, HRMC_N,  HRMC_E, HRMC_I,  HRMC_O, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_RBRC,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,   KC_H, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CKMED,   CKNAV,  KC_LSFT,     KC_RCTL,   CKNUM, CKPNT
+                                          LTMED,   LTNAV,  KC_LSFT,     KC_RCTL,   LTNUM, LTPNT
                                       //`--------------------------'  `--------------------------'
   ),
 
   [_QWERTY] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,   KC_O,   KC_P,  KC_BSPC,
+      KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,   KC_O,    KC_P, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LBRC,   CKQ_A,   CKQ_S,   CKQ_D,   CKQ_F,   KC_G,                         KC_H,   CKQ_J,   CKQ_K,  CKQ_L, KC_SCLN, KC_QUOT,
+      KC_LBRC, HRMQ_A,  HRMQ_S,  HRMQ_D,  HRMQ_F,    KC_G,                         KC_H,  HRMQ_J,  HRMQ_K, HRMQ_L, KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_RBRC,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CKMED,   CKNAV,  KC_LSFT,     KC_RCTL,   CKNUM, CKPNT
+                                          LTMED,   LTNAV,  KC_LSFT,     KC_RCTL,   LTNUM, LTPNT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -69,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_PEQL,  KC_PPLS,  KC_P4,  KC_P5,  KC_P6, KC_PAST,                         KC_TILD, KC_LBRC, KC_RBRC, KC_DLR, KC_HASH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_PENT,  KC_MINS,  KC_P1,  KC_P2,  KC_P3, KC_P0,                         KC_PIPE, KC_LCBR, KC_RCBR, KC_CIRC, KC_PERC, KC_UNDS,
+      KC_PENT,  KC_MINS,  KC_P1,  KC_P2,  KC_P3,   KC_P0,                         KC_PIPE, KC_LCBR, KC_RCBR, KC_CIRC, KC_PERC, KC_UNDS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______,    KC_PCMM, KC_PDOT,    XXXXXXX, XXXXXXX, XXXXXXX
+                                      _______,    KC_PCMM, KC_PDOT,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
