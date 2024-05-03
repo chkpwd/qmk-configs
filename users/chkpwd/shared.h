@@ -6,7 +6,8 @@ enum layer_names {
     _NUMSYM,
     _MED,
     _NAV,
-    _PNT
+    _PNT,
+    _UTILS
 };
 
 /* Colemak home row mods */
@@ -40,6 +41,7 @@ enum layer_names {
 #define LTNAV LT(_NAV, KC_SPC)
 #define LTNUM LT(_NUMSYM, KC_BSPC)
 #define LTPNT LT(_PNT, KC_ENT)
+#define LTUTILS LT(_UTILS, KC_RCTL)
 
 /* Custom keymaps */
 // uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record);
