@@ -1,0 +1,50 @@
+---
+name: "keymap drawer - build layout svg"
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash -euxo pipefail {0}
+
+env:
+
+
+jobs:
+  build:
+    name: Keymap Drawer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Environment
+        run: env | sort
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: Setup Keymap Drawer
+        run: |
+            pip install keymap-drawer
+        working-directory: ./ansible
+
+ qmk c2json keyboards/beekeeb/piantor/keymaps/chkpwd/keymap.c --no-cpp | keymap parse -c 10 -q - > piantor_3x6_keymap.yaml
+ keymap draw piantor_3x6_keymap.yaml > piantor_3x6_keymap.svg
