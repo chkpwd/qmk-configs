@@ -2,11 +2,11 @@ name: QMK Layout build
 on:
   workflow_dispatch:
   push:
-    # paths:
-    #   - "keyboards/**"
-    #   - ".github/workflows/*"
-    #   - "*.c"
-    #   - "*.h"
+    paths:
+      - "keyboards/**"
+      - ".github/workflows/*"
+      - "*.c"
+      - "*.h"
 
 jobs:
   list-user-keymaps:
