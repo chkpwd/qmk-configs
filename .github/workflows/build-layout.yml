@@ -1,50 +1,94 @@
----
-name: "keymap drawer - build layout svg"
-
+name: QMK Layout build
 on:
-  push:
   workflow_dispatch:
-
-permissions:
-  contents: write
-
-concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: true
-
-defaults:
-  run:
-    shell: bash -euxo pipefail {0}
-
-env:
-
+  push:
+    # paths:
+    #   - "keyboards/**"
+    #   - ".github/workflows/*"
+    #   - "*.c"
+    #   - "*.h"
 
 jobs:
-  build:
-    name: Keymap Drawer
+  list-user-keymaps:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Environment
-        run: env | sort
-
       - uses: actions/checkout@v4
+      - id: set-matrix
+        run: echo "matrix=$(find keyboards -regex ".*keymaps" | sed "s|keyboards/\(.*\)/keymaps|\1|"| jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+      - run: echo $GITHUB_OUTPUT
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+  build-firmware:
+    name: Build QMK Layout
+    runs-on: ubuntu-latest
+    container: qmkfm/qmk_cli
+    needs: list-user-keymaps
+    strategy:
+      fail-fast: false
+      matrix:
+        keyboards: ${{ fromJson(needs.list-user-keymaps.outputs.matrix) }}
+    env:
+      USERSPACE_PATH: users/${{ github.actor }}
+    steps:
+      - name: Disable git safe directory checks
+        run: git config --global --add safe.directory '*'
+
+      - name: Checkout QMK
+        uses: actions/checkout@v4
         with:
-          python-version: 3.9
+          repository: qmk/qmk_firmware
+          ref: master
+          submodules: true
 
-      - name: Cache Python dependencies
-        uses: actions/cache@v4
+      # path is relative to github.workspace
+      - name: Checkout userspace
+        uses: actions/checkout@v4
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: ${{ runner.os }}-pip-
+          path: ${{ env.USERSPACE_PATH }}
+          persist-credentials: false
 
-      - name: Setup Keymap Drawer
+      - name: Copy users/keyboards/* to keyboards/*
+        run: cp -rfv ${{ env.USERSPACE_PATH }}/keyboards/* keyboards/
+
+      - name: Convert Layout
         run: |
-            pip install keymap-drawer
-        working-directory: ./ansible
+          qmk c2json \
+            -o $(echo ${{ matrix.keyboards }} | tr / -) \
+            -kb ${{ matrix.keyboards }} \
+            -km ${{ github.actor }} \
+            keyboards/${{ matrix.keyboards }}/keymaps/${{ github.actor }}/keymap.c --no-cpp
 
- qmk c2json keyboards/beekeeb/piantor/keymaps/chkpwd/keymap.c --no-cpp | keymap parse -c 10 -q - > piantor_3x6_keymap.yaml
- keymap draw piantor_3x6_keymap.yaml > piantor_3x6_keymap.svg
+      - name: Upload firmware
+        uses: actions/upload-artifact@v3
+        with:
+          name: qmk-layout-artifact-${{ github.run_number }}
+          path: |
+            *.hex
+            *.json
+
+  # render-keymap:
+  #   name: Render keymap
+  #   needs: [build-firmware]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download firmware build file
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: qmk-layout-artifact-${{ github.run_number }}
+
+  #     - name: Install keymap-drawer
+  #       run: python3 -m pip install keymap-drawer
+      
+  #     - name: Draw keymap and package        
+  #       run: |
+  #         keymap parse -c 10 -q ${{ format(matrix.keyboards, '/', '-') }}.json > keymap.yaml
+  #         keymap draw keymap.yaml > ${{ format(matrix.keyboards, '/', '-') }}.svg
+
+  #     - name: Upload rendered keymap
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: qmk-layout-artifact-${{ github.run_number }}
+  #         path: |
+  #           *.svg
+  #           *.json
