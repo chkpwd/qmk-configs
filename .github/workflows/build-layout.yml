@@ -19,7 +19,7 @@ jobs:
         run: echo "matrix=$(find keyboards -regex ".*keymaps" | sed "s|keyboards/\(.*\)/keymaps|\1|"| jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
       - run: echo $GITHUB_OUTPUT
 
-  build-firmware:
+  convert-layout:
     name: Build QMK Layout
     runs-on: ubuntu-latest
     container: qmkfm/qmk_cli
@@ -54,41 +54,45 @@ jobs:
       - name: Convert Layout
         run: |
           qmk c2json \
-            -o $(echo ${{ matrix.keyboards }} | tr / -) \
+            -o $(echo ${{ matrix.keyboards }} | tr / -).json \
             -kb ${{ matrix.keyboards }} \
             -km ${{ github.actor }} \
             keyboards/${{ matrix.keyboards }}/keymaps/${{ github.actor }}/keymap.c --no-cpp
 
       - name: Upload firmware
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
           path: |
             *.hex
             *.json
 
-  # render-keymap:
-  #   name: Render keymap
-  #   needs: [build-firmware]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download firmware build file
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: qmk-layout-artifact-${{ github.run_number }}
+  render-keymap:
+    name: Keymap Drawer
+    needs: [list-user-keymaps, convert-layout]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        keyboards: ${{ fromJson(needs.list-user-keymaps.outputs.matrix) }}
+    steps:
+      - name: Download firmware build file
+        uses: actions/download-artifact@v4
+        with:
+          name: qmk-layout-artifact-${{ github.run_number }}
 
-  #     - name: Install keymap-drawer
-  #       run: python3 -m pip install keymap-drawer
+      - name: Install keymap-drawer
+        run: python3 -m pip install keymap-drawer
       
-  #     - name: Draw keymap and package        
-  #       run: |
-  #         keymap parse -c 10 -q ${{ format(matrix.keyboards, '/', '-') }}.json > keymap.yaml
-  #         keymap draw keymap.yaml > ${{ format(matrix.keyboards, '/', '-') }}.svg
+      - name: Draw keymap and package        
+        run: |
+          keymap parse -c 10 -q $(echo ${{ matrix.keyboards }} | tr / -).json > keymap.yaml
+          keymap draw keymap.yaml > $(echo ${{ matrix.keyboards }} | tr / -).svg
 
-  #     - name: Upload rendered keymap
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: qmk-layout-artifact-${{ github.run_number }}
-  #         path: |
-  #           *.svg
-  #           *.json
+      - name: Upload rendered keymap
+        uses: actions/upload-artifact@v4
+        with:
+          name: qmk-layout-artifact-${{ github.run_number }}
+          path: |
+            *.svg
+            *.json
