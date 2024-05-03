@@ -20,7 +20,7 @@ jobs:
       - run: echo $GITHUB_OUTPUT
 
   convert-layout:
-    name: Build QMK Layout
+    name: Convert QMK Layout
     runs-on: ubuntu-latest
     container: qmkfm/qmk_cli
     needs: list-user-keymaps
@@ -59,7 +59,7 @@ jobs:
             -km ${{ github.actor }} \
             keyboards/${{ matrix.keyboards }}/keymaps/${{ github.actor }}/keymap.c --no-cpp
 
-      - name: Upload firmware
+      - name: Upload Layout
         uses: actions/upload-artifact@v4
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
@@ -76,7 +76,7 @@ jobs:
       matrix:
         keyboards: ${{ fromJson(needs.list-user-keymaps.outputs.matrix) }}
     steps:
-      - name: Download firmware build file
+      - name: Download layout build file
         uses: actions/download-artifact@v4
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
@@ -89,10 +89,15 @@ jobs:
           keymap parse -c 10 -q $(echo ${{ matrix.keyboards }} | tr / -).json > keymap.yaml
           keymap draw keymap.yaml > $(echo ${{ matrix.keyboards }} | tr / -).svg
 
+      - name: Cleanup
+        run: |
+          rm *.json
+
       - name: Upload rendered keymap
         uses: actions/upload-artifact@v4
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
+          overwrite: true
           path: |
             *.svg
             *.json
