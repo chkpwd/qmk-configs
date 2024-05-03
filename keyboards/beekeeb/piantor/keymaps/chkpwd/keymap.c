@@ -1,18 +1,6 @@
 #include QMK_KEYBOARD_H
 
 #include "shared.h"
-#include "features/achordion.h"
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_achordion(keycode, record)) {
-        return false;
-    }
-    return true;
-}
-
-void matrix_scan_user(void) {
-    achordion_task();
-}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -24,7 +12,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_RBRC,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,   KC_H, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          LTMED,   LTNAV,  KC_LSFT,     KC_RCTL,   LTNUM, LTPNT
+                                          LTMED,   LTNAV,  KC_LSFT,    LTUTILS,   LTNUM, LTPNT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -68,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       KC_BSPC,  KC_PMNS,  KC_P7,  KC_P8,  KC_P9, KC_PSLS,                         KC_ASTR, KC_LPRN, KC_RPRN, KC_AT, KC_EXLM, KC_AMPR,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_PEQL,  KC_PPLS,  KC_P4,  KC_P5,  KC_P6, KC_PAST,                         KC_TILD, KC_LBRC, KC_RBRC, KC_DLR, KC_HASH, KC_BSLS,
+      KC_EQL,   KC_PPLS,  KC_P4,  KC_P5,  KC_P6, KC_PAST,                         KC_TILD, KC_LBRC, KC_RBRC, KC_DLR, KC_HASH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_PENT,  KC_MINS,  KC_P1,  KC_P2,  KC_P3,   KC_P0,                         KC_PIPE, KC_LCBR, KC_RCBR, KC_CIRC, KC_PERC, KC_UNDS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -85,6 +73,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_WH_D, KC_BTN2, KC_BTN1,    XXXXXXX, XXXXXXX, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+
+  [_UTILS] = LAYOUT_split_3x6_3(  // utilities layer
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, _______, _______, _______, _______, XXXXXXX,                      XXXXXXX, XXXXXXX, DT_DOWN, DT_UP, KC_MS_R, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                         XXXXXXX, XXXXXXX, DT_PRNT,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   )
 };
