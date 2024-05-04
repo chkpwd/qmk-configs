@@ -1,6 +1,9 @@
 {
-    "userspace_version": "1.0",
-    "build_targets": [
-        ["beekeeb/piantor", "chkpwd"]
+  "userspace_version": "1.0",
+  "build_targets": [
+    [
+      "beekeeb/piantor",
+      "chkpwd"
     ]
+  ]
 }
