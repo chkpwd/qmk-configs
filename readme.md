@@ -1,14 +1,13 @@
 # QMK Configs
 
-This repository contains the configuration files for QMK-powered keyboards.
+Configuration files for QMK-powered keyboards that I own.
 
 ## Keyboards
 
-#### - Beekeeb/Piantor
 <details>
-  <summary>Keymap</summary>
-
-  ![Keymap](./keyboards/beekeeb/piantor/keymaps/chkpwd/beekeeb-piantor.svg "Beekeeb/Piantor Keymap")
+  <summary><b>Beekeeb/Piantor Layout</b></summary>
+  
+  ![Keymap](https://raw.githubusercontent.com/chkpwd/qmk-configs/main/keyboards/beekeeb/piantor/keymaps/chkpwd/beekeeb-piantor.svg "Beekeeb/Piantor Keymap")
 </details>
 
 ## To-do List
