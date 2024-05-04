@@ -21,23 +21,5 @@ quantum/version.h
 # ?
 *.pdf
 
-# Ignore image/font files
-*.bmp
-*.wbmp
-*.gif
-*.jpg
-*.jpeg
-*.png
-*.apng
-*.mng
-*.svg
-*.webp
-*.webm
-*.avi
-*.mp4
-*.mpeg
-*.ttf
-*.otf
-
 # Python Virtual Environment
 venv/**
