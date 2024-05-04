@@ -53,6 +53,9 @@ jobs:
 
       - name: Convert Layout
         run: |
+          qmk info \
+            -kb ${{ matrix.keyboards }} \
+            -km ${{ github.actor }} > $(echo ${{ matrix.keyboards }} | tr / -)-info.txt
           qmk c2json \
             -o $(echo ${{ matrix.keyboards }} | tr / -).json \
             -kb ${{ matrix.keyboards }} \
@@ -64,6 +67,7 @@ jobs:
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
           path: |
+            *info.txt
             *.hex
             *.json
 
@@ -100,8 +104,12 @@ jobs:
 
   commit-layout:
     name: Commit Layout
-    needs: [render-keymap]
+    needs: [list-user-keymaps,render-keymap]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        keyboards: ${{ fromJson(needs.list-user-keymaps.outputs.matrix) }}
 
     permissions:
       contents: write
@@ -116,12 +124,15 @@ jobs:
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
 
+      - name: Move rendered keymap
+        run: mv *.svg *.json ${{ github.workspace }}/keyboards/${{ matrix.keyboards }}/keymaps/${{ github.actor }}
+
       - name: Commit files
         id: commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git add *.svg * .json
+          git add *.svg *.json
           if [-z "$(git status --porcelain)"]; then
             echo "::set-output name=push::false"
           else
@@ -134,5 +145,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-
+          branch: ${{ github.head_ref }}

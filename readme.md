@@ -1,6 +1,17 @@
-# [qmk-configs]
+# QMK Configs
 
-### To-do:
+This repository contains the configuration files for QMK-powered keyboards.
+
+## Keyboards
+
+#### - Beekeeb/Piantor
+<details>
+  <summary>Keymap</summary>
+  ![Keymap](./keyboards/beekeeb/piantor/keymaps/chkpwd/beekeeb-piantor.svg "Beekeeb/Piantor Keymap")
+</details>
+
+## To-do List
+
 - [x] Move Achordion to External Userspace
 - [x] Add tapping term per key
 - [ ] Add Keymap for Discipline 65
