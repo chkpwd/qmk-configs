@@ -98,11 +98,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
-          overwrite: true
           path: |
-            *-info.txt
-            *.json
-            !qmk.json
+            *.svg
 
   commit-layout:
     name: Commit Layout
