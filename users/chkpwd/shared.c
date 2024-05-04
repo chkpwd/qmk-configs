@@ -41,8 +41,8 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
   switch (tap_hold_keycode) {
-    case LTNAV:
     case LTNUM:
+    case LTPNT:
       return 200;  // Bypass Achordion for these keys.
   }
 
