@@ -7,6 +7,7 @@ This repository contains the configuration files for QMK-powered keyboards.
 #### - Beekeeb/Piantor
 <details>
   <summary>Keymap</summary>
+
   ![Keymap](./keyboards/beekeeb/piantor/keymaps/chkpwd/beekeeb-piantor.svg "Beekeeb/Piantor Keymap")
 </details>
 
