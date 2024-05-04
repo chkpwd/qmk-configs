@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "keyboards/**"
+      - "users/**"
       - ".github/workflows/*"
       - "*.c"
       - "*.h"
