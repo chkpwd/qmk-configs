@@ -43,9 +43,6 @@ enum layer_names {
 #define LTPNT LT(_PNT, KC_ENT)
 #define LTUTILS LT(_UTILS, KC_RCTL)
 
-/* Custom keymaps */
-// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record);
-
 // Mouse key speed and acceleration.
 #undef MOUSEKEY_DELAY
 #define MOUSEKEY_DELAY          0
