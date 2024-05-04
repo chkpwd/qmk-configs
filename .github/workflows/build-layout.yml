@@ -119,11 +119,9 @@ jobs:
       - name: Commit files
         id: commit
         run: |
-          ls -la
-          pwd
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git add .*svg .*json
+          git add *.svg * .json
           if [-z "$(git status --porcelain)"]; then
             echo "::set-output name=push::false"
           else
