@@ -68,8 +68,9 @@ jobs:
         with:
           name: qmk-layout-artifact-${{ github.run_number }}
           path: |
-            $(echo ${{ matrix.keyboards }} | tr / -)-info.txt
-            $(echo ${{ matrix.keyboards }} | tr / -).json
+            *-info.txt
+            *.json
+            !qmk.json
 
   render-keymap:
     name: Keymap Drawer
@@ -99,8 +100,9 @@ jobs:
           name: qmk-layout-artifact-${{ github.run_number }}
           overwrite: true
           path: |
-            $(echo ${{ matrix.keyboards }} | tr / -).svg
-            $(echo ${{ matrix.keyboards }} | tr / -).json
+            *-info.txt
+            *.json
+            !qmk.json
 
   commit-layout:
     name: Commit Layout
