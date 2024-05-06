@@ -97,7 +97,11 @@ jobs:
 
       - name: Draw keymap and package
         run: |
-          keymap parse -c 10 -l ${{ needs.convert-layout.outputs.layer_names }} $(echo ${{ matrix.keyboards }} | tr / -).json > keymap.yaml
+          keymap parse \
+            -c 10 \
+            -l ${{ needs.convert-layout.outputs.layer_names }} \
+            -q $(echo ${{ matrix.keyboards }} | tr / -).json > keymap.yaml
+ 
           keymap draw keymap.yaml > $(echo ${{ matrix.keyboards }} | tr / -).svg
 
       - name: Upload rendered keymap
@@ -110,7 +114,7 @@ jobs:
 
   commit-layout:
     name: Commit Layout
-    needs: [list-user-keymaps,render-keymap]
+    needs: [list-user-keymaps, render-keymap]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
