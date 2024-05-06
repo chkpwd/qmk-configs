@@ -63,6 +63,12 @@ jobs:
             -km ${{ github.actor }} \
             keyboards/${{ matrix.keyboards }}/keymaps/${{ github.actor }}/keymap.c --no-cpp
 
+      - name: Gather layer info
+        id: layers
+        run: |
+          layer_names=$(grep -Eo "\s\s\[([A-Z0-9_]+)\]" "keyboards/${{ matrix.keyboards }}/keymaps/${{ github.actor }}/keymap.c" | tr -d '[]_' | tr '\n ' ' ')
+          echo "layer_names=$layer_names" >> $GITHUB_OUTPUT
+
       - name: Upload Layout
         uses: actions/upload-artifact@v4
         with:
@@ -91,7 +97,7 @@ jobs:
 
       - name: Draw keymap and package
         run: |
-          keymap parse -c 10 -q $(echo ${{ matrix.keyboards }} | tr / -).json > keymap.yaml
+          keymap parse -c 10 -l ${{ needs.convert-layout.outputs.layer_names }} $(echo ${{ matrix.keyboards }} | tr / -).json > keymap.yaml
           keymap draw keymap.yaml > $(echo ${{ matrix.keyboards }} | tr / -).svg
 
       - name: Upload rendered keymap
