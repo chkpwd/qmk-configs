@@ -5,7 +5,7 @@ Configuration files for QMK-powered keyboards that I own.
 ## Keyboards
 
 <details>
-  <summary><b>Beekeeb/Piantor Layout</b></summary>
+  <summary><b>Beekeeb/Piantor</b></summary>
   
   ![Keymap](https://raw.githubusercontent.com/chkpwd/qmk-configs/main/keyboards/beekeeb/piantor/keymaps/chkpwd/beekeeb-piantor.svg "Beekeeb/Piantor Keymap")
 </details>
