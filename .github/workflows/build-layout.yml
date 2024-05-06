@@ -68,7 +68,7 @@ jobs:
         id: layers
         run: |
           echo "layer_names=$(grep -Eo "\s\s\[([A-Z0-9_]+)\]" \
-               "keyboards/piantor/keymaps/chkpwd/keymap.c" | \
+               "keyboards/${{ github.actor }}/keymaps/chkpwd/keymap.c" | \
                tr -d '[]_' | tr '\n ' ' ')" >> $GITHUB_OUTPUT
 
       - name: Upload Layout
