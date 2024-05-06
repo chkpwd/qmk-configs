@@ -101,7 +101,7 @@ jobs:
         run: |
           keymap parse \
             -c 10 \
-            -l ${{ needs.convert-layout.outputs.layer_names }} \
+            -l $(echo ${{ needs.convert-layout.outputs.layer_names }}) \
             -q $(echo ${{ matrix.keyboards }} | tr / -).json > keymap.yaml
  
           keymap draw keymap.yaml > $(echo ${{ matrix.keyboards }} | tr / -).svg
