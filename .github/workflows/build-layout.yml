@@ -127,7 +127,6 @@ jobs:
       - name: Move rendered keymap
         run: |
           mv -fv $(echo ${{ matrix.keyboards }} | tr / -).svg \
-                 #$(echo ${{ matrix.keyboards }} | tr / -).json \
                  ${{ github.workspace }}/keyboards/${{ matrix.keyboards }}/keymaps/${{ github.actor }}
 
       - name: Commit files
@@ -135,7 +134,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
-          git add *.svg *.json
+          git add *.svg
           if [-z "$(git status --porcelain)"]; then
             echo "push=false" >> $GITHUB_OUTPUT
           else
