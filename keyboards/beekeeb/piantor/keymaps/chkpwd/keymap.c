@@ -30,11 +30,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_MED] = LAYOUT_split_3x6_3(  // media layer
   //,-----------------------------------------------------.                  ,-----------------------------------------------------.
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-    XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,                      XXXXXXX, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPRV, XXXXXXX,
+    XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, XXXXXXX,                     XXXXXXX, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPRV, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                  |--------+--------+--------+--------+--------+--------|
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+------|
                                           _______, _______, _______,    KC_MPLY, KC_MSTP, KC_MUTE
                                       //`--------------------------'  `--------------------------'
@@ -42,11 +42,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_split_3x6_3(  // navigation layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PSCR, KC_COPY, KC_CUT, KC_PSTE, KC_UNDO, _______,
+     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PSCR, KC_COPY, KC_CUT,  KC_PSTE, KC_UNDO, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, XXXXXXX,                      KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT,  _______,
+     _______, _______, _______, _______, _______, XXXXXXX,                      KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_INS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
+     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -54,11 +54,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NUMSYM] = LAYOUT_split_3x6_3(  // number + symbols layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_BSPC,  KC_PMNS,  KC_P7,  KC_P8,  KC_P9, KC_PSLS,                        KC_ASTR, KC_LPRN, KC_RPRN, KC_AT, KC_EXLM,   KC_AMPR,
+      KC_BSPC,  KC_PMNS,  KC_P7,  KC_P8,  KC_P9, KC_PSLS,                        KC_GRV,   KC_AT, KC_AMPR, KC_LPRN, KC_RPRN, KC_PAST,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_EQL,   KC_PPLS,  KC_P4,  KC_P5,  KC_P6, KC_PAST,                        KC_TILD, KC_LBRC, KC_RBRC, KC_DLR, KC_HASH,  KC_BSLS,
+       KC_EQL,  KC_PPLS,  KC_P4,  KC_P5,  KC_P6,  KC_EQL,                       KC_TILD, KC_PIPE,  KC_DLR, KC_LBRC, KC_RBRC, KC_HASH,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_PENT,  KC_MINS,  KC_P1,  KC_P2,  KC_P3,   KC_P0,                        KC_PIPE, KC_LCBR, KC_RCBR, KC_CIRC, KC_PERC, KC_UNDS,
+      KC_PENT,  KC_MINS,  KC_P1,  KC_P2,  KC_P3,   KC_P0,                       KC_MINS, KC_CIRC, KC_PERC, KC_LCBR, KC_RCBR, KC_EXLM,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          KC_PDOT,  KC_PCMM, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
@@ -66,11 +66,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_PNT] = LAYOUT_split_3x6_3(  // mouse layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PSCR, KC_COPY, KC_CUT, KC_PSTE, KC_UNDO,  _______,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PSCR, KC_COPY,  KC_CUT, KC_PSTE, KC_UNDO, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, _______, _______, _______, _______, XXXXXXX,                      XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,
+     XXXXXXX, _______, _______, _______, _______, XXXXXXX,                      XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_WH_D, KC_BTN2, KC_BTN1,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
