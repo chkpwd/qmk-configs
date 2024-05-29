@@ -54,11 +54,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NUMSYM] = LAYOUT_split_3x6_3(  // number - symbols layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_BSPC, KC_SLSH,  KC_P7,  KC_P8,  KC_P9, KC_MINS,                        KC_GRV,   KC_AT, KC_AMPR, KC_LPRN, KC_RPRN, KC_PAST,
+      KC_BSPC, KC_SLSH,  KC_7,  KC_8,  KC_9, KC_MINS,                            KC_GRV,   KC_AT, KC_AMPR, KC_LPRN, KC_RPRN, KC_PAST,
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-       KC_ENT,    KC_0,  KC_P4,  KC_P5,  KC_P6, KC_PPLS,                       KC_TILD, KC_PIPE,  KC_DLR, KC_LBRC, KC_RBRC, KC_HASH,
+       KC_ENT,    KC_0,  KC_4,  KC_5,  KC_6, KC_PPLS,                            KC_TILD, KC_PIPE,  KC_DLR, KC_LBRC, KC_RBRC, KC_HASH,
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
-      _______, KC_PDOT,  KC_P1,  KC_P2,  KC_P3, KC_UNDS,                        KC_EQL, KC_EXLM, KC_PERC, KC_LCBR, KC_RCBR, KC_CIRC,
+      _______, KC_PDOT,  KC_1,  KC_2,  KC_3, KC_UNDS,                            KC_EQL, KC_EXLM, KC_PERC, KC_LCBR, KC_RCBR, KC_CIRC,
   //|--------------------------------------------------------------|  |--------------------------------------------------------------|
                                          XXXXXXX,  XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
