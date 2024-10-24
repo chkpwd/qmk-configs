@@ -55,9 +55,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     case HRMC_A:
     case HRMC_O:
       return TAPPING_TERM + 75;
-    // case HRMQ_A:
-    case HRMQ_L:
-      return TAPPING_TERM + 75;
     default:
       return TAPPING_TERM;
   }

@@ -2,7 +2,6 @@
 
 enum layer_names {
     _COLEMAK,
-    _QWERTY,
     _NUMSYM,
     _MED,
     _NAV,
@@ -22,19 +21,6 @@ enum layer_names {
 #define HRMC_E RCTL_T(KC_E)
 #define HRMC_I LALT_T(KC_I)
 #define HRMC_O RGUI_T(KC_O)
-
-/* Qwerty home row mods */
-// Left Hand
-#define HRMQ_A LGUI_T(KC_A)
-#define HRMQ_S LALT_T(KC_S)
-#define HRMQ_D LCTL_T(KC_D)
-#define HRMQ_F LSFT_T(KC_F)
-
-// Right Hand
-#define HRMQ_H RSFT_T(KC_H)
-#define HRMQ_J RCTL_T(KC_J)
-#define HRMQ_K LALT_T(KC_K)
-#define HRMQ_L RGUI_T(KC_L)
 
 /* Custom Layers vars */
 #define LTMED LT(_MED, KC_LGUI)
