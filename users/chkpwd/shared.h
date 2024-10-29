@@ -6,8 +6,11 @@ enum layer_names {
     _MED,
     _NAV,
     _PNT,
-    _UTILS
+    _UTILS,
 };
+
+/* Modifier Keys*/
+#define C_HYPR HYPR_T(KC_CAPS)
 
 /* Colemak home row mods */
 // Left Hand

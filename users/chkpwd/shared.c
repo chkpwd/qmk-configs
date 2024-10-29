@@ -32,7 +32,7 @@ bool achordion_chord(uint16_t tap_hold_keycode,
                      uint16_t other_keycode,
                      keyrecord_t* other_record) {
   // Bypass Achordion for these keys.
-  if (tap_hold_keycode==LTNAV) {
+  if (tap_hold_keycode==LTNAV || tap_hold_keycode==LTNUM) {
     return true; // consider it held, not tapped
   }
 
@@ -43,6 +43,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
   switch (tap_hold_keycode) {
     case LTNUM:
     case LTPNT:
+    case C_HYPR:
       return 200;  // Bypass Achordion for these keys.
   }
 
