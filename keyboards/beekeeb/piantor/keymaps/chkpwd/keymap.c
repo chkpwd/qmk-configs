@@ -1,9 +1,8 @@
 #include QMK_KEYBOARD_H
 
-#include "shared.h"
+#include "chkpwd.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
   [_COLEMAK] = LAYOUT_split_3x6_3( // Colemak layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                         KC_J,   KC_L,    KC_U,   KC_Y, KC_SCLN, QK_GESC,
@@ -12,19 +11,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-----------------------------------------------------|                    |-----------------------------------------------------|
       KC_RBRC,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,   KC_H, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
   //|--------------------------------------------------------------|  |--------------------------------------------------------------|
-                                           LTMED,   LTNAV,   C_HYPR,  LTPNT,     LTNUM, LTUTILS
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [_MED] = LAYOUT_split_3x6_3(  // media layer
-  //,-----------------------------------------------------.                  ,-----------------------------------------------------.
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-----------------------------------------------------|                  |-----------------------------------------------------|
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPRV, XXXXXXX,
-  //|-----------------------------------------------------|                  |-----------------------------------------------------|
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------------------------------------------------------------|  |------------------------------------------------------------|
-                                          KC_MPLY, _______, _______,    KC_MPLY, KC_MSTP, KC_MUTE
+                                           TD(_MED),   LTNAV,  HYPER,  LTPNT,     LTNUM, LTUTILS
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -51,20 +38,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          XXXXXXX,  XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
-
-  [_PNT] = LAYOUT_split_3x6_3(  // mouse layer
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PSCR, KC_COPY,  KC_CUT, KC_PSTE, KC_UNDO, _______,
-  //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     XXXXXXX, _______, _______, _______, _______, XXXXXXX,                      XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,
-  //|-----------------------------------------------------|                    |-----------------------------------------------------|
-     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
-  //|--------------------------------------------------------------|  |--------------------------------------------------------------|
-                                          KC_WH_D, KC_BTN2, KC_BTN1,    XXXXXXX, XXXXXXX, XXXXXXX
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-
   [_UTILS] = LAYOUT_split_3x6_3(  // utilities layer
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       XXXXXXX, KC_F9, KC_F10, KC_F11, KC_F12, XXXXXXX,                          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,

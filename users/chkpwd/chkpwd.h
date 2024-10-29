@@ -3,14 +3,37 @@
 enum layer_names {
     _COLEMAK,
     _NUMSYM,
-    _MED,
     _NAV,
     _PNT,
     _UTILS,
 };
 
+typedef enum {
+    TD_NONE,
+    TD_UNKNOWN,
+    TD_SINGLE_TAP,
+    TD_SINGLE_HOLD,
+    TD_DOUBLE_TAP
+} td_state_t;
+
+typedef struct {
+    bool is_press_action;
+    td_state_t state;
+} td_tap_t;
+
+enum {
+    _MED,
+};
+
+// Function associated with all tap dances
+td_state_t cur_dance(tap_dance_state_t *state);
+
+// Functions associated with individual tap dances
+void ql_finished(tap_dance_state_t *state, void *user_data);
+void ql_reset(tap_dance_state_t *state, void *user_data);
+
 /* Modifier Keys*/
-#define C_HYPR HYPR_T(KC_CAPS)
+#define HYPER HYPR_T(KC_CAPS)
 
 /* Colemak home row mods */
 // Left Hand
