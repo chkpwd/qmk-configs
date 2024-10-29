@@ -7,10 +7,11 @@ enum layer_names {
     _NAV,
     _PNT,
     _UTILS,
+    TD_ESC_CAPS,
 };
 
 /* Modifier Keys*/
-#define C_HYPR HYPR_T(KC_CAPS)
+#define HYPER HYPR_T(KC_CAPS)
 
 /* Colemak home row mods */
 // Left Hand

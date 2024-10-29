@@ -1,7 +1,13 @@
 #include QMK_KEYBOARD_H
 
-#include "shared.h"
+#include "chkpwd.h"
 #include "features/achordion.h"
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
+};
 
 /* Shared functions across all keyboards */
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
@@ -43,7 +49,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
   switch (tap_hold_keycode) {
     case LTNUM:
     case LTPNT:
-    case C_HYPR:
+    case HYPER:
       return 200;  // Bypass Achordion for these keys.
   }
 
