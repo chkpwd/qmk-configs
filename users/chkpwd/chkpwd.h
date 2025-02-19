@@ -4,7 +4,6 @@ enum layer_names {
     _COLEMAK,
     _NUMSYM,
     _NAV,
-    _PNT,
     _UTILS,
 };
 
@@ -49,17 +48,4 @@ void ql_reset(tap_dance_state_t *state, void *user_data);
 #define LTMED LT(_MED, KC_LGUI)
 #define LTNAV LT(_NAV, KC_SPC)
 #define LTNUM LT(_NUMSYM, KC_BSPC)
-#define LTPNT LT(_PNT, KC_ENT)
 #define LTUTILS LT(_UTILS, KC_RCTL)
-
-// Mouse key speed and acceleration.
-#undef MOUSEKEY_DELAY
-#define MOUSEKEY_DELAY          0
-#undef MOUSEKEY_INTERVAL
-#define MOUSEKEY_INTERVAL       16
-#undef MOUSEKEY_WHEEL_DELAY
-#define MOUSEKEY_WHEEL_DELAY    0
-#undef MOUSEKEY_MAX_SPEED
-#define MOUSEKEY_MAX_SPEED      6
-#undef MOUSEKEY_TIME_TO_MAX
-#define MOUSEKEY_TIME_TO_MAX    64

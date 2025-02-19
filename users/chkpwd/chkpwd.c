@@ -55,17 +55,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         return false;
     }
 
-    // switch (keycode) {
-    //     case LT(_UTILS,KC_RCTL):
-    //         if (record->tap.count && record->event.pressed) {
-    //             tap_code16(KC_A);
-    //         } else if (record->event.pressed) {
-    //             layer_on(_UTILS);
-    //             break;
-    //         }
-    //         return false;
-    // }
-
     return true;
 }
 
@@ -88,8 +77,6 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
   switch (tap_hold_keycode) {
     case LTNUM:
-    case LTPNT:
-    case KC_CAPS:
       return 200;  // Bypass Achordion for these keys.
   }
 
@@ -98,10 +85,8 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // Increase tapping term for GUI keys
     case HRMC_A:
     case HRMC_O:
-    case KC_CAPS:
       return TAPPING_TERM + 75;
     default:
       return TAPPING_TERM;
