@@ -32,9 +32,6 @@ td_state_t cur_dance(tap_dance_state_t *state);
 void ql_finished(tap_dance_state_t *state, void *user_data);
 void ql_reset(tap_dance_state_t *state, void *user_data);
 
-/* Modifier Keys*/
-#define HYPER HYPR_T(KC_CAPS)
-
 /* Colemak home row mods */
 // Left Hand
 #define HRMC_A LGUI_T(KC_A)

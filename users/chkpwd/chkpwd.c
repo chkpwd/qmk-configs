@@ -89,7 +89,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
   switch (tap_hold_keycode) {
     case LTNUM:
     case LTPNT:
-    case HYPER:
+    case KC_CAPS:
       return 200;  // Bypass Achordion for these keys.
   }
 
@@ -101,6 +101,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     // Increase tapping term for GUI keys
     case HRMC_A:
     case HRMC_O:
+    case KC_CAPS:
       return TAPPING_TERM + 75;
     default:
       return TAPPING_TERM;
